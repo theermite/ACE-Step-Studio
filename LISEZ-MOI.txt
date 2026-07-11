@@ -1,0 +1,56 @@
+========================================
+  ACE-Step — Generateur de musique par IA
+  (local, gratuit, illimite)
+========================================
+
+Bienvenue ! Cet outil genere de la musique complete (instrumentale ou
+chantee) directement sur ton ordinateur. Pas d'abonnement, pas de limite,
+tout reste chez toi.
+
+
+------------------------------------------
+  INSTALLATION — 2 ETAPES
+------------------------------------------
+
+1. Decompresse ce dossier ou tu veux (par exemple : C:\ACE-Step-Studio).
+   Evite le Bureau ou "Program Files" — prefere la racine d'un disque.
+
+2. Double-clique sur :  DEMARRER-ACE-Step.bat
+
+C'est tout. Une fenetre noire s'ouvre (laisse-la ouverte), puis ton
+navigateur ouvre l'interface sur :  http://localhost:3470
+
+Le modele d'IA est DEJA INCLUS dans ce dossier : rien a telecharger.
+La premiere ouverture prend juste une minute ou deux (chargement du
+modele en memoire), puis ca genere. Ca marche meme sans internet.
+
+Ce dossier est deja configure pour ta carte (NVIDIA RTX 2060, 6 Go) :
+il utilise le modele "2B", le seul adapte a 6 Go de memoire video.
+
+
+------------------------------------------
+  CE QU'IL TE FAUT
+------------------------------------------
+
+- Windows 10 ou 11
+- Une carte graphique NVIDIA (la tienne, RTX 2060, convient)
+- Un pilote NVIDIA a jour (mets-le a jour via GeForce Experience si besoin)
+- ~30 Go d'espace disque libre
+
+
+------------------------------------------
+  POUR ARRETER
+------------------------------------------
+
+Ferme simplement la fenetre noire. Tout s'arrete.
+
+
+------------------------------------------
+  POUR COMMENCER A CREER
+------------------------------------------
+
+Dans l'interface, va dans l'onglet "Guide" (a gauche) : il explique tout —
+comment decrire ta musique, ecrire les paroles, et regler la qualite.
+
+
+Bon voyage musical !
