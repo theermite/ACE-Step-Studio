@@ -10,10 +10,21 @@ interface SettingsModalProps {
     onClose: () => void;
     theme: 'light' | 'dark';
     onToggleTheme: () => void;
+    colorTheme: string;
+    onColorThemeChange: (colorTheme: string) => void;
     onNavigateToProfile?: (username: string) => void;
 }
 
-export const SettingsModal: React.FC<SettingsModalProps> = ({ isOpen, onClose, theme, onToggleTheme, onNavigateToProfile }) => {
+// Accent color presets — ids match [data-theme] blocks in index.html.
+const COLOR_THEMES = [
+    { id: 'pink', color: '#ec4899', label: 'Pink' },
+    { id: 'blue', color: '#3b82f6', label: 'Blue' },
+    { id: 'violet', color: '#8b5cf6', label: 'Violet' },
+    { id: 'emerald', color: '#10b981', label: 'Emerald' },
+    { id: 'amber', color: '#f59e0b', label: 'Amber' },
+];
+
+export const SettingsModal: React.FC<SettingsModalProps> = ({ isOpen, onClose, theme, onToggleTheme, colorTheme, onColorThemeChange, onNavigateToProfile }) => {
     const { user } = useAuth();
     const { t, language, setLanguage } = useI18n();
     const [isEditProfileOpen, setIsEditProfileOpen] = useState(false);
@@ -208,6 +219,24 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({ isOpen, onClose, t
                                 >
                                     {t('dark')}
                                 </button>
+                            </div>
+                            <div className="pt-1">
+                                <p className="text-sm text-zinc-500 dark:text-zinc-400 mb-2">{t('color')}</p>
+                                <div className="flex items-center gap-3">
+                                    {COLOR_THEMES.map(ct => (
+                                        <button
+                                            key={ct.id}
+                                            onClick={() => onColorThemeChange(ct.id)}
+                                            title={ct.label}
+                                            aria-label={ct.label}
+                                            className={`w-8 h-8 rounded-full transition-transform hover:scale-110 focus:outline-none ${colorTheme === ct.id
+                                                    ? 'ring-2 ring-offset-2 ring-zinc-400 ring-offset-white dark:ring-offset-zinc-900'
+                                                    : ''
+                                                }`}
+                                            style={{ backgroundColor: ct.color }}
+                                        />
+                                    ))}
+                                </div>
                             </div>
                         </div>
                     </div>

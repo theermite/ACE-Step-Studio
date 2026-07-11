@@ -176,6 +176,11 @@ function AppContent() {
     return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
   });
 
+  // Color Theme State (accent palette, see index.html [data-theme])
+  const [colorTheme, setColorTheme] = useState<string>(() => {
+    return localStorage.getItem('colorTheme') || 'pink';
+  });
+
   // Navigation State - default to create view
   const [currentView, setCurrentView] = useState<View>('create');
 
@@ -375,6 +380,12 @@ function AppContent() {
       document.documentElement.classList.remove('dark');
     }
   }, [theme]);
+
+  // Color Theme Effect — sets [data-theme] so the accent CSS variables switch.
+  useEffect(() => {
+    localStorage.setItem('colorTheme', colorTheme);
+    document.documentElement.setAttribute('data-theme', colorTheme);
+  }, [colorTheme]);
 
   const toggleTheme = () => {
     setTheme(prev => prev === 'dark' ? 'light' : 'dark');
@@ -1994,6 +2005,8 @@ function AppContent() {
         onClose={() => setShowSettingsModal(false)}
         theme={theme}
         onToggleTheme={toggleTheme}
+        colorTheme={colorTheme}
+        onColorThemeChange={setColorTheme}
         onNavigateToProfile={handleNavigateToProfile}
       />
 

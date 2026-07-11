@@ -2829,7 +2829,7 @@ export const CreatePanel: React.FC<CreatePanelProps> = ({
                     onClick={() => { setBulkCount(count); localStorage.setItem('ace-bulkCount', String(count)); }}
                     className={`flex-1 py-2 rounded-lg text-xs font-bold transition-all ${
                       bulkCount === count
-                        ? 'bg-gradient-to-r from-orange-500 to-pink-600 text-white shadow-md'
+                        ? 'bg-gradient-to-r from-pink-500 to-purple-600 text-white shadow-md'
                         : 'bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400 hover:bg-zinc-200 dark:hover:bg-zinc-700'
                     }`}
                   >
@@ -4083,7 +4083,7 @@ export const CreatePanel: React.FC<CreatePanelProps> = ({
       <div className="p-4 mt-auto sticky bottom-0 bg-zinc-50/95 dark:bg-suno-panel/95 backdrop-blur-sm z-10 border-t border-zinc-200 dark:border-white/5 space-y-3">
         <button
           onClick={handleGenerate}
-          className="w-full h-12 rounded-xl font-bold text-base flex items-center justify-center gap-2 transition-all transform active:scale-[0.98] bg-gradient-to-r from-orange-500 to-pink-600 text-white shadow-lg hover:brightness-110"
+          className="w-full h-12 rounded-xl font-bold text-base flex items-center justify-center gap-2 transition-all transform active:scale-[0.98] bg-gradient-to-r from-pink-500 to-purple-600 text-white shadow-lg hover:brightness-110"
           disabled={!isAuthenticated || activeJobCount >= 10}
         >
           <Sparkles size={18} />
