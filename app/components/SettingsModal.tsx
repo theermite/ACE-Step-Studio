@@ -169,6 +169,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({ isOpen, onClose, t
                                 >
                                     <option value="ru">{t('russianLanguage')}</option>
                                     <option value="en">{t('english')}</option>
+                                    <option value="fr">{t('french')}</option>
                                     <option value="zh">{t('chinese')}</option>
                                     <option value="ja">{t('japaneseLanguage')}</option>
                                     <option value="ko">{t('koreanLanguage')}</option>
