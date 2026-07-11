@@ -6,6 +6,7 @@ export const ru = {
     training: 'Обучение',
     tools: 'Инструменты',
     news: 'Новости',
+    guide: 'Руководство',
 
     // Tools
     toolsDescription: 'Утилиты для конвертации и управления моделями',

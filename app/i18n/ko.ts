@@ -6,6 +6,7 @@ export const ko = {
     training: '훈련',
     tools: '도구',
     news: '뉴스',
+    guide: '가이드',
 
     // Tools
     toolsDescription: '모델 변환 및 관리 유틸리티',

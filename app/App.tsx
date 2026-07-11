@@ -66,6 +66,7 @@ import { SearchPage } from './components/SearchPage';
 import { TrainingPanel } from './components/TrainingPanel';
 import { ToolsPanel } from './components/ToolsPanel';
 import { NewsPage } from './components/NewsPage';
+import { GuidePage } from './components/GuidePage';
 import { ConfirmDialog } from './components/ConfirmDialog';
 
 
@@ -1775,6 +1776,8 @@ function AppContent() {
 
       case 'news':
         return <NewsPage />;
+      case 'guide':
+        return <GuidePage />;
 
       case 'create':
       default:
@@ -1811,7 +1814,7 @@ function AppContent() {
             {/* Song List */}
             <div className={`
               ${!mobileShowList ? 'hidden md:flex' : 'flex'}
-              flex-1 flex-col h-full overflow-hidden bg-white dark:bg-suno-DEFAULT transition-colors duration-300
+              flex-1 flex-col h-full overflow-hidden bg-white dark:bg-suno transition-colors duration-300
             `}>
               <SongList
                 songs={songs}
@@ -1891,7 +1894,7 @@ function AppContent() {
   };
 
   return (
-    <div className="flex flex-col h-screen bg-white dark:bg-suno-DEFAULT text-zinc-900 dark:text-white font-sans antialiased selection:bg-pink-500/30 transition-colors duration-300">
+    <div className="flex flex-col h-screen bg-white dark:bg-suno text-zinc-900 dark:text-white font-sans antialiased selection:bg-pink-500/30 transition-colors duration-300">
       {authLoading && (
         <div className="bg-zinc-800 text-zinc-300 text-xs text-center py-1.5 flex items-center justify-center gap-2 flex-shrink-0">
           <div className="w-3 h-3 border-2 border-pink-500 border-t-transparent rounded-full animate-spin" />

@@ -6,6 +6,7 @@ export const ja = {
   training: 'トレーニング',
   tools: 'ツール',
   news: 'ニュース',
+  guide: 'ガイド',
 
   // Tools
   toolsDescription: 'モデルの変換・管理ツール',

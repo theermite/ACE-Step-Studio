@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Library, Disc, Search, LogIn, LogOut, Sun, Moon, GraduationCap, Newspaper, AudioLines, Wrench } from 'lucide-react';
+import { Library, Disc, Search, LogIn, LogOut, Sun, Moon, GraduationCap, Newspaper, AudioLines, Wrench, BookOpen } from 'lucide-react';
 import { View } from '../types';
 import { useI18n } from '../context/I18nContext';
 import { llmStorage } from '../services/llm/storage';
@@ -309,6 +309,13 @@ export const Sidebar: React.FC<SidebarProps> = ({
           label={t('news')}
           active={currentView === 'news'}
           onClick={() => onNavigate('news')}
+          isExpanded={isOpen}
+        />
+        <NavItem
+          icon={<BookOpen size={20} />}
+          label={t('guide')}
+          active={currentView === 'guide'}
+          onClick={() => onNavigate('guide')}
           isExpanded={isOpen}
         />
 

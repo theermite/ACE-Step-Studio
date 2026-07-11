@@ -6,6 +6,7 @@ export const en = {
     training: 'Training',
     tools: 'Tools',
     news: 'News',
+    guide: 'Guide',
 
     // Tools
     toolsDescription: 'Utilities for model conversion and management',

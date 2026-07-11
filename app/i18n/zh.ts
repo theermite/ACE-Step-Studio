@@ -6,6 +6,7 @@ export const zh = {
     training: '训练',
     tools: '工具',
     news: '新闻',
+    guide: '指南',
 
     // Tools
     toolsDescription: '模型转换和管理工具',

@@ -6,6 +6,7 @@ export const fr = {
     training: 'Entraînement',
     tools: 'Outils',
     news: 'Actualités',
+    guide: 'Guide',
 
     // Tools
     toolsDescription: 'Utilitaires de conversion et de gestion des modèles',
