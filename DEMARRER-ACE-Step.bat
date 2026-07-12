@@ -11,6 +11,16 @@ REM Modele 2B (leger) : le seul compatible avec une carte 6 Go (RTX 2060).
 REM Le moteur ACE-Step s'auto-configure selon la carte detectee (offload, INT8...).
 set "DEFAULT_MODEL=acestep-v15-turbo"
 
+REM --- Portabilite : corrige le chemin Python selon le disque courant ---
+REM Une install "editable" fige un chemin absolu (ex. D:\...). Sur une autre
+REM machine (E:\...) ce chemin est mort et le moteur ne demarre pas. On le
+REM reecrit sur le dossier reel a chaque lancement (idempotent).
+set "ACE_PTH=%~dp0python\Lib\site-packages\_editable_impl_ace_step.pth"
+if exist "%ACE_PTH%" (
+  > "%ACE_PTH%" echo %~dp0ACE-Step-1.5
+  >>"%ACE_PTH%" echo %~dp0ACE-Step-1.5
+)
+
 echo ========================================
 echo   ACE-Step demarre...
 echo   Cette fenetre doit rester ouverte.
