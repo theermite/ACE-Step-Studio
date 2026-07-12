@@ -884,6 +884,35 @@ class _VaeHost(_Host):
     _get_vae_dtype = MEMORY_UTILS_MODULE.MemoryUtilsMixin._get_vae_dtype
 
 
+class CudaDtypeOverrideTests(unittest.TestCase):
+    """Tests verifying the ACESTEP_DTYPE override for CUDA (NVIDIA) devices."""
+
+    def test_returns_none_when_env_unset(self):
+        """It returns None (keep auto selection) when ACESTEP_DTYPE is not set."""
+        with patch.dict("os.environ", {}, clear=False):
+            os.environ.pop("ACESTEP_DTYPE", None)
+            result = ORCHESTRATOR_MODULE._resolve_cuda_dtype_override()
+        self.assertIsNone(result)
+
+    def test_respects_float32_override(self):
+        """It returns float32 when ACESTEP_DTYPE=float32 (pre-Ampere NaN fix)."""
+        with patch.dict("os.environ", {"ACESTEP_DTYPE": "float32"}):
+            result = ORCHESTRATOR_MODULE._resolve_cuda_dtype_override()
+        self.assertEqual(result, torch.float32)
+
+    def test_respects_bfloat16_override(self):
+        """It returns bfloat16 when ACESTEP_DTYPE=bfloat16."""
+        with patch.dict("os.environ", {"ACESTEP_DTYPE": "bfloat16"}):
+            result = ORCHESTRATOR_MODULE._resolve_cuda_dtype_override()
+        self.assertEqual(result, torch.bfloat16)
+
+    def test_unknown_value_returns_none(self):
+        """It returns None (ignore override) for unrecognised ACESTEP_DTYPE values."""
+        with patch.dict("os.environ", {"ACESTEP_DTYPE": "int4"}):
+            result = ORCHESTRATOR_MODULE._resolve_cuda_dtype_override()
+        self.assertIsNone(result)
+
+
 class RocmDtypeTests(unittest.TestCase):
     """Tests verifying safe dtype selection for ROCm/HIP devices."""
 

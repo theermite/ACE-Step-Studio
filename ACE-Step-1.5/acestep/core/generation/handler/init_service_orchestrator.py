@@ -42,6 +42,32 @@ def _resolve_rocm_dtype() -> torch.dtype:
     return dtype
 
 
+_CUDA_DTYPE_MAP = {
+    "float32": torch.float32,
+    "float16": torch.float16,
+    "bfloat16": torch.bfloat16,
+}
+
+
+def _resolve_cuda_dtype_override() -> Optional[torch.dtype]:
+    """Return an explicit CUDA dtype from ``ACESTEP_DTYPE`` if the user set one.
+
+    Pre-Ampere GPUs (e.g. RTX 2060) fall back to ``float16``, whose narrow range
+    can overflow to NaN during diffusion. Set ``ACESTEP_DTYPE=float32`` to force
+    the wider, stable format. Returns ``None`` when the variable is unset so the
+    caller keeps its automatic bfloat16/float16 selection.
+    """
+    raw = os.environ.get("ACESTEP_DTYPE", "").strip().lower()
+    if not raw:
+        return None
+    dtype = _CUDA_DTYPE_MAP.get(raw)
+    if dtype is None:
+        logger.warning(
+            f"[initialize_service] Unknown ACESTEP_DTYPE={raw!r}; ignoring override."
+        )
+    return dtype
+
+
 class InitServiceOrchestratorMixin:
     """Public ``initialize_service`` orchestration entrypoint."""
 
@@ -89,7 +115,14 @@ class InitServiceOrchestratorMixin:
                     "(set ACESTEP_ROCM_DTYPE=bfloat16 or float16 to override)"
                 )
             elif resolved_device == "cuda":
-                if gpu_config.cuda_supports_bfloat16():
+                dtype_override = _resolve_cuda_dtype_override()
+                if dtype_override is not None:
+                    self.dtype = dtype_override
+                    logger.info(
+                        "[initialize_service] ACESTEP_DTYPE override active: "
+                        f"using {self.dtype} on CUDA."
+                    )
+                elif gpu_config.cuda_supports_bfloat16():
                     self.dtype = torch.bfloat16
                 else:
                     self.dtype = torch.float16
