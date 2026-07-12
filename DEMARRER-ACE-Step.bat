@@ -10,6 +10,9 @@ set "FRONTEND_URL=http://localhost:3470"
 REM Modele 2B (leger) : le seul compatible avec une carte 6 Go (RTX 2060).
 REM Le moteur ACE-Step s'auto-configure selon la carte detectee (offload, INT8...).
 set "DEFAULT_MODEL=acestep-v15-turbo"
+REM Carte pre-Ampere (ex. RTX 2060) : le format float16 deborde et produit du
+REM NaN (generation vide). float32 est plus large et corrige le calcul.
+set "ACESTEP_DTYPE=float32"
 
 REM --- Portabilite : corrige le chemin Python selon le disque courant ---
 REM Une install "editable" fige un chemin absolu (ex. D:\...). Sur une autre

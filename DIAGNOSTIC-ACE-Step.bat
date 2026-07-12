@@ -15,6 +15,8 @@ set "NODE_ENV=development"
 set "PORT=3470"
 set "FRONTEND_URL=http://localhost:3470"
 set "DEFAULT_MODEL=acestep-v15-turbo"
+REM Carte pre-Ampere (ex. RTX 2060) : float16 deborde (NaN). float32 corrige.
+set "ACESTEP_DTYPE=float32"
 
 REM Portabilite : corrige le chemin Python selon le disque courant.
 set "ACE_PTH=%~dp0python\Lib\site-packages\_editable_impl_ace_step.pth"
